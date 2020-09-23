@@ -1,0 +1,37 @@
+{
+  "name": "Buchung",
+  "fields": [
+    {
+      "fieldName": "datum",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "user",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gruppe",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "raum",
+      "otherEntityRelationshipName": "buchung",
+      "relationshipName": "raum",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200923124745",
+  "entityTableName": "buchung",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

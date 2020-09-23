@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-buchung-heading" jhiTranslate="wwHackathonTeam1App.buchung.home.createOrEditLabel">Create or edit a Buchung</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wwHackathonTeam1App.buchung.datum" for="field_datum">Datum</label>
+                    <div class="input-group">
+                        <input id="field_datum" type="text" class="form-control" name="datum" ngbDatepicker #datumDp="ngbDatepicker" formControlName="datum"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="datumDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wwHackathonTeam1App.buchung.user" for="field_user">User</label>
+                    <input type="text" class="form-control" name="user" id="field_user"
+                           formControlName="user"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wwHackathonTeam1App.buchung.gruppe" for="field_gruppe">Gruppe</label>
+                    <input type="text" class="form-control" name="gruppe" id="field_gruppe"
+                           formControlName="gruppe"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wwHackathonTeam1App.buchung.raum" for="field_raum">Raum</label>
+                    <select class="form-control" id="field_raum" name="raum" formControlName="raum">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="raumOption.id === editForm.get('raum')!.value?.id ? editForm.get('raum')!.value : raumOption" *ngFor="let raumOption of raums; trackBy: trackById">{{ raumOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
