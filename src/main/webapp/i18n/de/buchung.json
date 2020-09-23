@@ -1,0 +1,25 @@
+{
+  "wwHackathonTeam1App": {
+    "buchung": {
+      "home": {
+        "title": "Buchungs",
+        "createLabel": "Buchung erstellen",
+        "createOrEditLabel": "Buchung erstellen oder bearbeiten",
+        "notFound": "No Buchungs found"
+      },
+      "created": "Buchung erstellt mit ID {{ param }}",
+      "updated": "Buchung aktualisiert mit ID {{ param }}",
+      "deleted": "Buchung gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Buchung {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Buchung"
+      },
+      "datum": "Datum",
+      "user": "User",
+      "gruppe": "Gruppe",
+      "raum": "Raum"
+    }
+  }
+}

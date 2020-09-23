@@ -1,0 +1,24 @@
+{
+  "wwHackathonTeam1App": {
+    "raum": {
+      "home": {
+        "title": "Raums",
+        "createLabel": "Create a new Raum",
+        "createOrEditLabel": "Create or edit a Raum",
+        "notFound": "No Raums found"
+      },
+      "created": "A new Raum is created with identifier {{ param }}",
+      "updated": "A Raum is updated with identifier {{ param }}",
+      "deleted": "A Raum is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Raum {{ id }}?"
+      },
+      "detail": {
+        "title": "Raum"
+      },
+      "haus": "Haus",
+      "riegel": "Riegel",
+      "stockwerk": "Stockwerk"
+    }
+  }
+}

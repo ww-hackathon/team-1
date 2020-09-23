@@ -1,0 +1,25 @@
+{
+  "wwHackathonTeam1App": {
+    "buchung": {
+      "home": {
+        "title": "Buchungs",
+        "createLabel": "Create a new Buchung",
+        "createOrEditLabel": "Create or edit a Buchung",
+        "notFound": "No Buchungs found"
+      },
+      "created": "A new Buchung is created with identifier {{ param }}",
+      "updated": "A Buchung is updated with identifier {{ param }}",
+      "deleted": "A Buchung is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Buchung {{ id }}?"
+      },
+      "detail": {
+        "title": "Buchung"
+      },
+      "datum": "Datum",
+      "user": "User",
+      "gruppe": "Gruppe",
+      "raum": "Raum"
+    }
+  }
+}

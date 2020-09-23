@@ -1,0 +1,18 @@
+entity Buchung {
+	datum LocalDate,
+    user String,
+    gruppe String
+}
+
+entity Raum {
+	haus String,
+    riegel String,
+    stockwerk String
+}
+
+relationship ManyToOne {
+	Buchung{raum} to Raum
+}
+
+// Set service options to all except few
+service all with serviceImpl

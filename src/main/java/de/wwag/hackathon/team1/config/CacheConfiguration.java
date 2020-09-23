@@ -48,6 +48,8 @@ public class CacheConfiguration {
             createCache(cm, de.wwag.hackathon.team1.domain.User.class.getName());
             createCache(cm, de.wwag.hackathon.team1.domain.Authority.class.getName());
             createCache(cm, de.wwag.hackathon.team1.domain.User.class.getName() + ".authorities");
+            createCache(cm, de.wwag.hackathon.team1.domain.Buchung.class.getName());
+            createCache(cm, de.wwag.hackathon.team1.domain.Raum.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

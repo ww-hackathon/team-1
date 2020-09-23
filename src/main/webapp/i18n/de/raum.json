@@ -1,0 +1,24 @@
+{
+  "wwHackathonTeam1App": {
+    "raum": {
+      "home": {
+        "title": "Raums",
+        "createLabel": "Raum erstellen",
+        "createOrEditLabel": "Raum erstellen oder bearbeiten",
+        "notFound": "No Raums found"
+      },
+      "created": "Raum erstellt mit ID {{ param }}",
+      "updated": "Raum aktualisiert mit ID {{ param }}",
+      "deleted": "Raum gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Raum {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Raum"
+      },
+      "haus": "Haus",
+      "riegel": "Riegel",
+      "stockwerk": "Stockwerk"
+    }
+  }
+}

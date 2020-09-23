@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="raum">
+            <h2><span jhiTranslate="wwHackathonTeam1App.raum.detail.title">Raum</span> {{ raum.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="wwHackathonTeam1App.raum.haus">Haus</span></dt>
+                <dd>
+                    <span>{{ raum.haus }}</span>
+                </dd>
+                <dt><span jhiTranslate="wwHackathonTeam1App.raum.riegel">Riegel</span></dt>
+                <dd>
+                    <span>{{ raum.riegel }}</span>
+                </dd>
+                <dt><span jhiTranslate="wwHackathonTeam1App.raum.stockwerk">Stockwerk</span></dt>
+                <dd>
+                    <span>{{ raum.stockwerk }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/raum', raum.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "name": "Raum",
+  "fields": [
+    {
+      "fieldName": "haus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "riegel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "stockwerk",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200923124845",
+  "entityTableName": "raum",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
