@@ -1,0 +1,41 @@
+﻿id;haus;riegel;stockwerk
+1;11;A;CG
+2;11;B;CG
+3;11;A;EG
+4;11;B;EG
+5;11;A;1. Stock
+6;11;B;1. Stock
+7;11;A;2. Stock
+8;11;B;2. Stock
+9;11;A;3. Stock
+10;11;B;3. Stock
+11;12;A;CG
+12;12;B;CG
+13;12;A;EG
+14;12;B;EG
+15;12;A;1. Stock
+16;12;B;1. Stock
+17;12;A;2. Stock
+18;12;B;2. Stock
+19;12;A;3. Stock
+20;12;B;3. Stock
+21;13;A;CG
+22;13;B;CG
+23;13;A;EG
+24;13;B;EG
+25;13;A;1. Stock
+26;13;B;1. Stock
+27;13;A;2. Stock
+28;13;B;2. Stock
+29;13;A;3. Stock
+30;13;B;3. Stock
+31;14;A;CG
+32;14;B;CG
+33;14;A;EG
+34;14;B;EG
+35;14;A;1. Stock
+36;14;B;1. Stock
+37;14;A;2. Stock
+38;14;B;2. Stock
+39;14;A;3. Stock
+40;14;B;3. Stock
