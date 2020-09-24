@@ -12,6 +12,10 @@ import { RouterModule } from '@angular/router';
         path: 'raum',
         loadChildren: () => import('./raum/raum.module').then(m => m.WwHackathonTeam1RaumModule),
       },
+      {
+        path: 'gruppe',
+        loadChildren: () => import('./gruppe/gruppe.module').then(m => m.WwHackathonTeam1GruppeModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

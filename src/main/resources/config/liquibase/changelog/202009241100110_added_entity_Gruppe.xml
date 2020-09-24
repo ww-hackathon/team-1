@@ -19,7 +19,7 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="anzahlPLaetze" type="int">
+            <column name="anzahl_plaetze" type="int">
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
