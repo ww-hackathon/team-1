@@ -17,6 +17,7 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { BookRoomComponent } from './user-interface/book-room/book-room.component';
 import { SearchRoomComponent } from './user-interface/search-room/search-room.component';
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -35,7 +36,7 @@ import { SearchRoomComponent } from './user-interface/search-room/search-room.co
     ActiveMenuDirective, 
     FooterComponent, 
     BookRoomComponent, 
-    SearchRoomComponent
+    SearchRoomComponent,
   ],
   bootstrap: [MainComponent],
 })
