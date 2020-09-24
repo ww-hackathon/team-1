@@ -2,6 +2,8 @@ package de.wwag.hackathon.team1.web.rest;
 
 import de.wwag.hackathon.team1.domain.Raum;
 import de.wwag.hackathon.team1.service.RaumService;
+import de.wwag.hackathon.team1.service.RaumauswahlService;
+import de.wwag.hackathon.team1.service.dto.RaumauswahlDTO;
 import de.wwag.hackathon.team1.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -32,9 +34,11 @@ public class RaumResource {
     private String applicationName;
 
     private final RaumService raumService;
+    private final RaumauswahlService raumauswahlService;
 
-    public RaumResource(RaumService raumService) {
+    public RaumResource(RaumService raumService, RaumauswahlService raumauswahlService) {
         this.raumService = raumService;
+        this.raumauswahlService = raumauswahlService;
     }
 
     /**
@@ -129,4 +133,12 @@ public class RaumResource {
         raumService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+    
+    @GetMapping("/raumauswahl")
+    public ResponseEntity<RaumauswahlDTO> getRaumauswahl() {
+        log.debug("REST request to get all Raumauswahl");
+        Optional<RaumauswahlDTO> raumauswahl = raumauswahlService.getRaumauswahl();
+        return ResponseUtil.wrapOrNotFound(raumauswahl);
+    }
+    
 }
