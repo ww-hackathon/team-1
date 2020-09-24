@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IRaum } from 'app/shared/model/raum.model';
-import { IRaumauswahl, Raumauswahl } from 'app/shared/model/raumauswahl.model';
+import { IRaumauswahl } from 'app/shared/model/raumauswahl.model';
 
 type EntityResponseType = HttpResponse<IRaum>;
 type EntityArrayResponseType = HttpResponse<IRaum[]>;
@@ -30,7 +30,6 @@ export class RaumService {
     return this.http.get<IRaum>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  //findByProperties -> gibt RaumId zurück
   findbyProperties(haus: String, riegel: String, stockwerk: String): Observable<HttpResponse<number>> {
     return this.http.get<number>(`${this.resourceUrl}/${haus}/${riegel}/${stockwerk}`, { observe: 'response' });
   }
@@ -44,7 +43,6 @@ export class RaumService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  // Raumauswahl
   raumauswahl(): Observable<EntityRaumauswahlResponseType> {
     return this.http.get<IRaumauswahl>(`${this.resourceUrlRaumauswahl}`, { observe: 'response' });
   }
