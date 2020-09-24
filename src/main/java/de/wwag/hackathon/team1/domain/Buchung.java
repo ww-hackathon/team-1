@@ -31,11 +31,11 @@ public class Buchung implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = "buchungs", allowSetters = true)
-    private Gruppe gruppe;
-
+    private Raum raum;
+    
     @ManyToOne
     @JsonIgnoreProperties(value = "buchungs", allowSetters = true)
-    private Raum raum;
+    private Gruppe gruppe;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
