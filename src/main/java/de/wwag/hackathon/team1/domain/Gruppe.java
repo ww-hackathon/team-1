@@ -27,7 +27,13 @@ public class Gruppe implements Serializable {
     @Column(name = "anzahl_plaetze")
     private int anzahlPlaetze;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    public Gruppe(Long id, String name, int anzahlPlaetze) {
+		this.id = id;
+		this.name = name;
+		this.anzahlPlaetze = anzahlPlaetze;
+	}
+
+	// jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }

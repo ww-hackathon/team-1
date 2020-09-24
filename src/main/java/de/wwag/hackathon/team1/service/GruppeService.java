@@ -2,6 +2,7 @@ package de.wwag.hackathon.team1.service;
 
 import de.wwag.hackathon.team1.domain.Gruppe;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,12 @@ public interface GruppeService {
      */
     List<Gruppe> findAll();
 
+    /**
+     * Get all the gruppes for a given date and given raum.
+     *
+     * @return the list of entities.
+     */
+    List<Gruppe> findMultipleByDatumAndRaumId(LocalDate datum, Long id);
 
     /**
      * Get the "id" gruppe.
@@ -40,4 +47,6 @@ public interface GruppeService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+	
 }
