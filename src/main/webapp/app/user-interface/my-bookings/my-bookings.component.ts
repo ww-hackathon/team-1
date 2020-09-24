@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Buchung } from 'app/shared/model/buchung.model';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'jhi-my-bookings',
@@ -46,7 +49,9 @@ export class MyBookingsComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private accountService: AccountService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const account: Observable<Account | null> = this.accountService.identity();
+  }
 }

@@ -9,8 +9,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let buchung of buchungen ;trackBy: trackId">
-                <td>{{ buchung.user.id }}</td>
+            <tr *ngFor="let buchung of buchungen">
+                <td>{{ buchung.user?.id }}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit" disabled
