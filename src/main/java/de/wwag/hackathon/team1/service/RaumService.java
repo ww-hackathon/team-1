@@ -35,6 +35,16 @@ public interface RaumService {
     Optional<Raum> findOne(Long id);
 
     /**
+     * Get the "haus, stockwerk and riegel" raum.
+     *
+     * @param haus the haus of the entity.
+     * @param stockwerk the haus of the entity.
+     * @param riegel the haus of the entity.
+     * @return the entity.
+     */
+    Long findOneByHausStockwerkRiegel(String haus, String stockwerk, String riegel);
+
+    /**
      * Delete the "id" raum.
      *
      * @param id the id of the entity.
