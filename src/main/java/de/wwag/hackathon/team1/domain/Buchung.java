@@ -29,7 +29,8 @@ public class Buchung implements Serializable {
     @Column(name = "user")
     private String user;
 
-    @Column(name = "gruppe")
+    @ManyToOne
+    @JsonIgnoreProperties(value = "buchungs", allowSetters = true)
     private Gruppe gruppe;
 
     @ManyToOne
