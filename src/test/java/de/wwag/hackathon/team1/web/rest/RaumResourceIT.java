@@ -90,7 +90,7 @@ public class RaumResourceIT {
     public void createRaum() throws Exception {
         int databaseSizeBeforeCreate = raumRepository.findAll().size();
         // Create the Raum
-        restRaumMockMvc.perform(post("/api/raums")
+        restRaumMockMvc.perform(post("/api/raum")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(raum)))
             .andExpect(status().isCreated());
@@ -113,7 +113,7 @@ public class RaumResourceIT {
         raum.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restRaumMockMvc.perform(post("/api/raums")
+        restRaumMockMvc.perform(post("/api/raum")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(raum)))
             .andExpect(status().isBadRequest());
@@ -131,7 +131,7 @@ public class RaumResourceIT {
         raumRepository.saveAndFlush(raum);
 
         // Get all the raumList
-        restRaumMockMvc.perform(get("/api/raums?sort=id,desc"))
+        restRaumMockMvc.perform(get("/api/raum?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(raum.getId().intValue())))
@@ -139,7 +139,7 @@ public class RaumResourceIT {
             .andExpect(jsonPath("$.[*].riegel").value(hasItem(DEFAULT_RIEGEL)))
             .andExpect(jsonPath("$.[*].stockwerk").value(hasItem(DEFAULT_STOCKWERK)));
     }
-    
+
     @Test
     @Transactional
     public void getRaum() throws Exception {
@@ -147,7 +147,7 @@ public class RaumResourceIT {
         raumRepository.saveAndFlush(raum);
 
         // Get the raum
-        restRaumMockMvc.perform(get("/api/raums/{id}", raum.getId()))
+        restRaumMockMvc.perform(get("/api/raum/{id}", raum.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(raum.getId().intValue()))
@@ -159,7 +159,7 @@ public class RaumResourceIT {
     @Transactional
     public void getNonExistingRaum() throws Exception {
         // Get the raum
-        restRaumMockMvc.perform(get("/api/raums/{id}", Long.MAX_VALUE))
+        restRaumMockMvc.perform(get("/api/raum/{id}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
 
@@ -180,7 +180,7 @@ public class RaumResourceIT {
             .riegel(UPDATED_RIEGEL)
             .stockwerk(UPDATED_STOCKWERK);
 
-        restRaumMockMvc.perform(put("/api/raums")
+        restRaumMockMvc.perform(put("/api/raum")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedRaum)))
             .andExpect(status().isOk());
@@ -200,7 +200,7 @@ public class RaumResourceIT {
         int databaseSizeBeforeUpdate = raumRepository.findAll().size();
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
-        restRaumMockMvc.perform(put("/api/raums")
+        restRaumMockMvc.perform(put("/api/raum")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(raum)))
             .andExpect(status().isBadRequest());
@@ -219,7 +219,7 @@ public class RaumResourceIT {
         int databaseSizeBeforeDelete = raumRepository.findAll().size();
 
         // Delete the raum
-        restRaumMockMvc.perform(delete("/api/raums/{id}", raum.getId())
+        restRaumMockMvc.perform(delete("/api/raum/{id}", raum.getId())
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 

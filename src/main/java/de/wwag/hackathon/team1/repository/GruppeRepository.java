@@ -15,5 +15,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GruppeRepository extends JpaRepository<Gruppe, Long> {
 
-	List<Gruppe> findByDatumAndRaum_Id(LocalDate datum, Long id);
 }
