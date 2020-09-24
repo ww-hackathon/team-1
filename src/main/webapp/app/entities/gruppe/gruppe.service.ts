@@ -14,6 +14,8 @@ export class GruppenService {
 
   constructor(protected http: HttpClient) {}
 
+  //findByRoomIdAndDate
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IGruppe[]>(this.resourceUrl, { params: options, observe: 'response' });
