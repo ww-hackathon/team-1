@@ -56,8 +56,8 @@ public class BuchungServiceImpl implements BuchungService {
     }
 
 	@Override
-	public List<Buchung> findMultipleByDateAndRaumId(LocalDate datum, Long id) {
+	public List<Buchung> findMultipleByDatumAndRaumId(LocalDate datum, Long id) {
 		log.debug("Request to delete Buchung : {}", datum + " ; " + id);
-		return buchungRepository.findByDateAndRaumId(datum, id);
+		return buchungRepository.findByDatumAndRaum_Id(datum, id);
 	}
 }

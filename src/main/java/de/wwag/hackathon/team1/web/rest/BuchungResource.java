@@ -109,7 +109,7 @@ public class BuchungResource {
      * @param id the id of the buchung to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the buchung, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/buchungen/{date}/raum/{id}")
+    @GetMapping("/buchungen/{datum}/raum/{id}")
     public ResponseEntity<List<Buchung>> getBuchung(@PathVariable String datum, @PathVariable String id) {
         log.debug("REST request to get Buchung : {}", datum + id);
         
@@ -121,7 +121,7 @@ public class BuchungResource {
         
         LocalDate localDate = LocalDate.of(year, month, day);
         
-        List<Buchung> raumBuchungen = buchungService.findMultipleByDateAndRaumId(localDate, raum_id);
+        List<Buchung> raumBuchungen = buchungService.findMultipleByDatumAndRaumId(localDate, raum_id);
         return ResponseEntity.ok().body(raumBuchungen);
     }
 

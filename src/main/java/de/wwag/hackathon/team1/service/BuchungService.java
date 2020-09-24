@@ -31,7 +31,7 @@ public interface BuchungService {
      *
      * @return the list of entities.
      */
-    List<Buchung> findMultipleByDateAndRaumId(LocalDate datum, Long id);
+    List<Buchung> findMultipleByDatumAndRaumId(LocalDate datum, Long id);
 
 
     /**

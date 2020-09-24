@@ -15,5 +15,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BuchungRepository extends JpaRepository<Buchung, Long> {
 
-	List<Buchung> findByDateAndRaumId(LocalDate datum, Long id);
+	List<Buchung> findByDatumAndRaum_Id(LocalDate datum, Long id);
 }
