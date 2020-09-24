@@ -111,7 +111,7 @@ public class BuchungResource {
      */
     @GetMapping("/buchungen/{datum}/raum/{id}")
     public ResponseEntity<List<Buchung>> getBuchung(@PathVariable String datum, @PathVariable String id) {
-        log.debug("REST request to get Buchung : {}", datum + id);
+        log.debug("REST request to get Buchung for Datum: {}, Id: {}", datum, id);
         
         Long raum_id = Long.parseLong(id);
         
