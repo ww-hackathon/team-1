@@ -16,7 +16,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -138,4 +137,17 @@ public class BuchungResource {
         buchungService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+    
+    /**
+     * {@code GET  /buchungen/user/:userId} : get all buchung from "userId".
+     *
+     * @param userId the userId of the user whose bookings are to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the buchung, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/buchungen/user/{userId}")
+    public List<Buchung> getBuchungbyUserId(@PathVariable Long userId) {
+        log.debug("REST request to get Buchung of user : {}", userId);
+        return buchungService.findBuchungByUserId(userId);
+    }
+    
 }

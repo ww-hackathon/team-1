@@ -60,4 +60,10 @@ public class BuchungServiceImpl implements BuchungService {
 		log.debug("Request to find Buchung for Datum: {}, Id: {}", datum + ";" + id);
 		return buchungRepository.findAllByDatumAndRaum_Id(datum, id);
 	}
+		
+	public List<Buchung> findBuchungByUserId(Long userId) {
+		log.debug("Request to get Buchung of user : {}", userId);
+		return buchungRepository.findAllByUser_Id(userId);
+		
+	}
 }
