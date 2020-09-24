@@ -1,9 +1,9 @@
 export interface IGruppe {
   id: number;
   name?: string;
-  spaces?: number;
+  anzahlPlaetze?: number;
 }
 
 export class Gruppe implements IGruppe {
-  constructor(public id: number, public name?: string, public spaces?: number) {}
+  constructor(public id: number, public name?: string, public anzahlPlaetze?: number) {}
 }
