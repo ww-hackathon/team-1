@@ -7,18 +7,20 @@
         Added the constraints for entity Buchung.
     -->
     <changeSet id="20200923124745-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="raum_id"
                                  baseTableName="buchung"
                                  constraintName="fk_buchung_raum_id"
                                  referencedColumnNames="id"
                                  referencedTableName="raum"/>
-                                 
+
         <addForeignKeyConstraint baseColumnNames="gruppe_id"
                                  baseTableName="buchung"
                                  constraintName="fk_buchung_gruppe_id"
                                  referencedColumnNames="id"
                                  referencedTableName="gruppe"/>
+
+
 
     </changeSet>
 </databaseChangeLog>

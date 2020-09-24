@@ -5,7 +5,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -26,16 +25,17 @@ public class Buchung implements Serializable {
     @Column(name = "datum")
     private LocalDate datum;
 
-    @Column(name = "user")
-    private String user;
-
     @ManyToOne
     @JsonIgnoreProperties(value = "buchungs", allowSetters = true)
     private Raum raum;
-    
+
     @ManyToOne
     @JsonIgnoreProperties(value = "buchungs", allowSetters = true)
     private Gruppe gruppe;
+
+    @OneToOne
+    @JsonIgnoreProperties(value = "buchungs", allowSetters = true)
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -59,19 +59,6 @@ public class Buchung implements Serializable {
         this.datum = datum;
     }
 
-    public String getUser() {
-        return user;
-    }
-
-    public Buchung user(String user) {
-        this.user = user;
-        return this;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public Gruppe getGruppe() {
         return gruppe;
     }
@@ -83,6 +70,15 @@ public class Buchung implements Serializable {
 
     public void setGruppe(Gruppe gruppe) {
         this.gruppe = gruppe;
+    }
+
+    public Buchung user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Raum getRaum() {
@@ -121,7 +117,6 @@ public class Buchung implements Serializable {
         return "Buchung{" +
             "id=" + getId() +
             ", datum='" + getDatum() + "'" +
-            ", user='" + getUser() + "'" +
             "}";
     }
 }
