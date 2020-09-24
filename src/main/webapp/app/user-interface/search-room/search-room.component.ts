@@ -34,7 +34,7 @@ export class SearchRoomComponent implements OnInit {
         haus: this.selectedHaus,
         stock: this.selectedStockwerk,
         riegel: this.selectedRiegel,
-        date: '2020-12-10',
+        date: this.date,
       },
     });
   }
