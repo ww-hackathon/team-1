@@ -18,6 +18,7 @@ import { BookRoomComponent } from './user-interface/book-room/book-room.componen
 import { SearchRoomComponent } from './user-interface/search-room/search-room.component';
 import { MyBookingsComponent } from './user-interface/my-bookings/my-bookings.component';
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -29,6 +30,7 @@ import { MyBookingsComponent } from './user-interface/my-bookings/my-bookings.co
     WwHackathonTeam1AppRoutingModule,
   ],
   declarations: [
+
     MainComponent,
     NavbarComponent,
     ErrorComponent,
@@ -37,7 +39,7 @@ import { MyBookingsComponent } from './user-interface/my-bookings/my-bookings.co
     FooterComponent,
     BookRoomComponent,
     SearchRoomComponent,
-    MyBookingsComponent,
+    MyBookingsComponent
   ],
   bootstrap: [MainComponent],
 })
