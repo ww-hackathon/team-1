@@ -14,6 +14,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
+import { BookRoomComponent } from './user-interface/book-room/book-room.component';
+import { SearchRoomComponent } from './user-interface/search-room/search-room.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,16 @@ import { ErrorComponent } from './layouts/error/error.component';
     WwHackathonTeam1EntityModule,
     WwHackathonTeam1AppRoutingModule,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [
+    MainComponent, 
+    NavbarComponent, 
+    ErrorComponent, 
+    PageRibbonComponent, 
+    ActiveMenuDirective, 
+    FooterComponent, 
+    BookRoomComponent, 
+    SearchRoomComponent
+  ],
   bootstrap: [MainComponent],
 })
 export class WwHackathonTeam1AppModule {}
