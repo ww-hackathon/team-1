@@ -12,7 +12,7 @@
         Added the entity Buchung.
     -->
     <changeSet id="202009241620_altered_Buchung_for_user" author="jhipster">
-        <renameColumn tableName="buchung" oldColumnName="user" newColumnName="user_id"/>
+        <renameColumn tableName="buchung" oldColumnName="user" newColumnName="user_id" columnDataType="varchar(255)"/>
         <modifyDataType tableName="buchung"
                         columnName="user_id"
                         newDataType="bigint"
