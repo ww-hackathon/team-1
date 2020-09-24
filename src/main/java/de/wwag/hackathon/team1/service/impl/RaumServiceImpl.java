@@ -53,4 +53,12 @@ public class RaumServiceImpl implements RaumService {
         log.debug("Request to delete Raum : {}", id);
         raumRepository.deleteById(id);
     }
+
+	@Override
+	@Transactional(readOnly = true)
+	public Long findOneByHausStockwerkRiegel(String haus, String stockwerk, String riegel) {
+		 log.debug("Request to get Raum : Haus: {}, Stockwerk: {}, Riegel: {}", haus + stockwerk + riegel);
+	     Raum raum = raumRepository.findByHausAndStockwerkAndRiegel(haus, stockwerk, riegel);
+	     return raum.getId();
+	}
 }

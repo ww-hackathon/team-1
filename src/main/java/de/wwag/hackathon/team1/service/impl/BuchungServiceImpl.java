@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,4 +54,10 @@ public class BuchungServiceImpl implements BuchungService {
         log.debug("Request to delete Buchung : {}", id);
         buchungRepository.deleteById(id);
     }
+
+	@Override
+	public List<Buchung> findMultipleByDatumAndRaumId(LocalDate datum, Long id) {
+		log.debug("Request to find Buchung for Datum: {}, Id: {}", datum + ";" + id);
+		return buchungRepository.findByDatumAndRaum_Id(datum, id);
+	}
 }

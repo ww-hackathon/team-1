@@ -35,9 +35,6 @@ public class BuchungResourceIT {
     private static final LocalDate DEFAULT_DATUM = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATUM = LocalDate.now(ZoneId.systemDefault());
 
-    private static final String DEFAULT_USER = "AAAAAAAAAA";
-    private static final String UPDATED_USER = "BBBBBBBBBB";
-
     @Autowired
     private BuchungRepository buchungRepository;
 
@@ -60,8 +57,7 @@ public class BuchungResourceIT {
      */
     public static Buchung createEntity(EntityManager em) {
         Buchung buchung = new Buchung()
-            .datum(DEFAULT_DATUM)
-            .user(DEFAULT_USER);
+            .datum(DEFAULT_DATUM);
         return buchung;
     }
     /**
@@ -72,8 +68,7 @@ public class BuchungResourceIT {
      */
     public static Buchung createUpdatedEntity(EntityManager em) {
         Buchung buchung = new Buchung()
-            .datum(UPDATED_DATUM)
-            .user(UPDATED_USER);
+            .datum(UPDATED_DATUM);
         return buchung;
     }
 
@@ -97,7 +92,6 @@ public class BuchungResourceIT {
         assertThat(buchungList).hasSize(databaseSizeBeforeCreate + 1);
         Buchung testBuchung = buchungList.get(buchungList.size() - 1);
         assertThat(testBuchung.getDatum()).isEqualTo(DEFAULT_DATUM);
-        assertThat(testBuchung.getUser()).isEqualTo(DEFAULT_USER);
     }
 
     @Test
@@ -131,8 +125,7 @@ public class BuchungResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(buchung.getId().intValue())))
-            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())))
-            .andExpect(jsonPath("$.[*].user").value(hasItem(DEFAULT_USER)));
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
 
     @Test
@@ -146,8 +139,7 @@ public class BuchungResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(buchung.getId().intValue()))
-            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()))
-            .andExpect(jsonPath("$.user").value(DEFAULT_USER));
+            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()));
     }
     @Test
     @Transactional
@@ -170,8 +162,7 @@ public class BuchungResourceIT {
         // Disconnect from session so that the updates on updatedBuchung are not directly saved in db
         em.detach(updatedBuchung);
         updatedBuchung
-            .datum(UPDATED_DATUM)
-            .user(UPDATED_USER);
+            .datum(UPDATED_DATUM);
 
         restBuchungMockMvc.perform(put("/api/buchungen")
             .contentType(MediaType.APPLICATION_JSON)
@@ -183,7 +174,6 @@ public class BuchungResourceIT {
         assertThat(buchungList).hasSize(databaseSizeBeforeUpdate);
         Buchung testBuchung = buchungList.get(buchungList.size() - 1);
         assertThat(testBuchung.getDatum()).isEqualTo(UPDATED_DATUM);
-        assertThat(testBuchung.getUser()).isEqualTo(UPDATED_USER);
     }
 
     @Test
