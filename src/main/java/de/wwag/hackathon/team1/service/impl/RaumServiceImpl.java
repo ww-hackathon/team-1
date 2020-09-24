@@ -58,6 +58,7 @@ public class RaumServiceImpl implements RaumService {
 	@Transactional(readOnly = true)
 	public Long findOneByHausStockwerkRiegel(String haus, String stockwerk, String riegel) {
 		 log.debug("Request to get Raum : {}", haus + stockwerk + riegel);
-	     return raumRepository.findByHausAndStockwerkAndRiegel(haus, stockwerk, riegel);
+	     Raum raum = raumRepository.findByHausAndStockwerkAndRiegel(haus, stockwerk, riegel);
+	     return raum.getId();
 	}
 }

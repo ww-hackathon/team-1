@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RaumRepository extends JpaRepository<Raum, Long> {
 
-	Long findByHausAndStockwerkAndRiegel(String haus, String stockwerk, String riegel);
+	Raum findByHausAndStockwerkAndRiegel(String haus, String stockwerk, String riegel);
 }

@@ -86,7 +86,6 @@ public class RaumResource {
     public List<Raum> getAllRaums() {
         log.debug("REST request to get all Raums");
         return raumService.findAll();
-        
     }
 
     /**
@@ -112,7 +111,7 @@ public class RaumResource {
      */
     @GetMapping("/raums/{haus}/{stockwerk}/{riegel}")
     @ResponseBody
-    public ResponseEntity<Long> getRaumId(@PathVariable String haus, String stockwerk, String riegel) {
+    public ResponseEntity<Long> getRaumId(@PathVariable String haus,@PathVariable String stockwerk,@PathVariable String riegel) {
     	log.debug("REST request to get Raum : {}", haus + stockwerk + riegel);
     	Long raum_id = raumService.findOneByHausStockwerkRiegel(haus, stockwerk, riegel);
     	return ResponseEntity.ok().body(raum_id);

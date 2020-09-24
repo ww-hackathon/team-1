@@ -38,7 +38,7 @@ public class BuchungResource {
     }
 
     /**
-     * {@code POST  /buchung} : Create a new buchung.
+     * {@code POST  /buchungen} : Create a new buchung.
      *
      * @param buchung the buchung to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new buchung, or with status {@code 400 (Bad Request)} if the buchung has already an ID.
