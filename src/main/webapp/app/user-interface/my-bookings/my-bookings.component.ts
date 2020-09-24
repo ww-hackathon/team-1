@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBuchung } from 'app/shared/model/buchung.model';
+import { IBuchung, Buchung } from 'app/shared/model/buchung.model';
 import { AccountService } from 'app/core/auth/account.service';
 import { UserService } from 'app/core/user/user.service';
 import { BuchungService } from 'app/entities/buchung/buchung.service';
@@ -16,6 +16,17 @@ export class MyBookingsComponent implements OnInit {
   constructor(private accountService: AccountService, private userService: UserService, private buchungService: BuchungService) {}
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  delete(buchung: Buchung): void {
+    if (buchung.id) {
+      this.buchungService.delete(buchung.id);
+      this.loadData();
+    }
+  }
+
+  loadData(): void {
     this.accountService.getAuthenticationState().subscribe(account => {
       if (account) {
         this.userService

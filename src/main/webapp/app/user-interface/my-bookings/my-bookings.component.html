@@ -13,7 +13,7 @@
                 <td>Haus {{ buchung.raum?.haus }}, {{ buchung.raum?.stockwerk }}, Riegel {{ buchung.raum?.riegel }}, {{ buchung.gruppe?.name }}</td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <button type="submit" disabled
+                        <button type="submit" (click)="delete(buchung)"
                                 class="btn btn-danger btn-sm">
                             <fa-icon icon="times"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
