@@ -43,11 +43,11 @@ export class BuchungService {
     return this.http.get<IBuchung[]>(`${this.resourceUrl}/user/${userId}`, { observe: 'response' });
   }
 
-  findByRoomAndDate(roomId: number, date: Moment): Observable<EntityResponseType> {
+  findByRoomAndDate(roomId: number, date: Moment): Observable<EntityArrayResponseType> {
     const formattedDate = this.formatDate(date);
     return this.http
-      .get<IBuchung>(`${this.resourceUrl}/${formattedDate}/raum/${roomId}`, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+      .get<IBuchung[]>(`${this.resourceUrl}/${formattedDate}/raum/${roomId}`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

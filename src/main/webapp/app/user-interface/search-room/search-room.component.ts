@@ -5,6 +5,7 @@ import { map, startWith } from 'rxjs/operators';
 import { RaumService } from 'app/entities/raum/raum.service';
 import { Raumauswahl, IRaumauswahl } from 'app/shared/model/raumauswahl.model';
 import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-search-room',
@@ -16,8 +17,9 @@ export class SearchRoomComponent implements OnInit {
   selectedHaus = '';
   selectedStockwerk = '';
   selectedRiegel = '';
+  date: Date = new Date();
 
-  constructor(private raumService: RaumService) {}
+  constructor(private raumService: RaumService, private router: Router) {}
   ngOnInit(): void {
     this.loadData();
   }
@@ -26,6 +28,16 @@ export class SearchRoomComponent implements OnInit {
     this.raumService.raumauswahl().subscribe((res: HttpResponse<IRaumauswahl>) => (this.raumauswahl = res.body || {}));
   }
 
+  routeToBuchen(): void {
+    this.router.navigate(['/booking'], {
+      state: {
+        haus: this.selectedHaus,
+        stock: this.selectedStockwerk,
+        riegel: this.selectedRiegel,
+        date: '2020-12-10',
+      },
+    });
+  }
   /*
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];

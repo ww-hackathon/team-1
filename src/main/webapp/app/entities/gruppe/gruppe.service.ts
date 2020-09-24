@@ -22,9 +22,9 @@ export class GruppenService {
     return this.http.get<IGruppe[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
-  findByRoomAndDate(roomId: number, date: moment.Moment): Observable<EntityResponseType> {
+  findByRoomAndDate(roomId: number, date: moment.Moment): Observable<EntityArrayResponseType> {
     const formattedDate = this.formatDate(date);
-    return this.http.get<IGruppe>(`${this.resourceUrl}/${formattedDate}/raum/${roomId}`, { observe: 'response' });
+    return this.http.get<IGruppe[]>(`${this.resourceUrl}/${formattedDate}/raum/${roomId}`, { observe: 'response' });
   }
 
   private formatDate(moment?: Moment): string {
