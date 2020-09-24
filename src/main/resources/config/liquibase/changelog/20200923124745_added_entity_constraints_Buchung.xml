@@ -13,6 +13,12 @@
                                  constraintName="fk_buchung_raum_id"
                                  referencedColumnNames="id"
                                  referencedTableName="raum"/>
+                                 
+        <addForeignKeyConstraint baseColumnNames="gruppe_id"
+                                 baseTableName="buchung"
+                                 constraintName="fk_buchung_gruppe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="gruppe"/>
 
     </changeSet>
 </databaseChangeLog>

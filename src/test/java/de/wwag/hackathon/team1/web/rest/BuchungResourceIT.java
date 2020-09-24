@@ -2,6 +2,7 @@ package de.wwag.hackathon.team1.web.rest;
 
 import de.wwag.hackathon.team1.WwHackathonTeam1App;
 import de.wwag.hackathon.team1.domain.Buchung;
+import de.wwag.hackathon.team1.domain.Gruppe;
 import de.wwag.hackathon.team1.repository.BuchungRepository;
 import de.wwag.hackathon.team1.service.BuchungService;
 
@@ -38,8 +39,8 @@ public class BuchungResourceIT {
     private static final String DEFAULT_USER = "AAAAAAAAAA";
     private static final String UPDATED_USER = "BBBBBBBBBB";
 
-    private static final String DEFAULT_GRUPPE = "AAAAAAAAAA";
-    private static final String UPDATED_GRUPPE = "BBBBBBBBBB";
+    private static final Gruppe DEFAULT_GRUPPE = new Gruppe();
+    private static final Gruppe UPDATED_GRUPPE = new Gruppe();
 
     @Autowired
     private BuchungRepository buchungRepository;

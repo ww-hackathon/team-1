@@ -38,26 +38,26 @@ public class BuchungResource {
     }
 
     /**
-     * {@code POST  /buchungs} : Create a new buchung.
+     * {@code POST  /buchung} : Create a new buchung.
      *
      * @param buchung the buchung to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new buchung, or with status {@code 400 (Bad Request)} if the buchung has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/buchungs")
+    @PostMapping("/buchungen")
     public ResponseEntity<Buchung> createBuchung(@RequestBody Buchung buchung) throws URISyntaxException {
         log.debug("REST request to save Buchung : {}", buchung);
         if (buchung.getId() != null) {
             throw new BadRequestAlertException("A new buchung cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Buchung result = buchungService.save(buchung);
-        return ResponseEntity.created(new URI("/api/buchungs/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/buchungen/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * {@code PUT  /buchungs} : Updates an existing buchung.
+     * {@code PUT  /buchungen} : Updates an existing buchung.
      *
      * @param buchung the buchung to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated buchung,
@@ -65,7 +65,7 @@ public class BuchungResource {
      * or with status {@code 500 (Internal Server Error)} if the buchung couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/buchungs")
+    @PutMapping("/buchungen")
     public ResponseEntity<Buchung> updateBuchung(@RequestBody Buchung buchung) throws URISyntaxException {
         log.debug("REST request to update Buchung : {}", buchung);
         if (buchung.getId() == null) {
@@ -78,23 +78,23 @@ public class BuchungResource {
     }
 
     /**
-     * {@code GET  /buchungs} : get all the buchungs.
+     * {@code GET  /buchungen} : get all the buchungen.
      *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of buchungs in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of buchungen in body.
      */
-    @GetMapping("/buchungs")
-    public List<Buchung> getAllBuchungs() {
-        log.debug("REST request to get all Buchungs");
+    @GetMapping("/buchungen")
+    public List<Buchung> getAllBuchungen() {
+        log.debug("REST request to get all Buchungen");
         return buchungService.findAll();
     }
 
     /**
-     * {@code GET  /buchungs/:id} : get the "id" buchung.
+     * {@code GET  /buchungen/:id} : get the "id" buchung.
      *
      * @param id the id of the buchung to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the buchung, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/buchungs/{id}")
+    @GetMapping("/buchungen/{id}")
     public ResponseEntity<Buchung> getBuchung(@PathVariable Long id) {
         log.debug("REST request to get Buchung : {}", id);
         Optional<Buchung> buchung = buchungService.findOne(id);
@@ -102,12 +102,12 @@ public class BuchungResource {
     }
 
     /**
-     * {@code DELETE  /buchungs/:id} : delete the "id" buchung.
+     * {@code DELETE  /buchungen/:id} : delete the "id" buchung.
      *
      * @param id the id of the buchung to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/buchungs/{id}")
+    @DeleteMapping("/buchungen/{id}")
     public ResponseEntity<Void> deleteBuchung(@PathVariable Long id) {
         log.debug("REST request to delete Buchung : {}", id);
         buchungService.delete(id);
