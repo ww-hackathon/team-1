@@ -16,6 +16,7 @@ import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { BookRoomComponent } from './user-interface/book-room/book-room.component';
 import { SearchRoomComponent } from './user-interface/search-room/search-room.component';
+import { MyBookingsComponent } from './user-interface/my-bookings/my-bookings.component';
 
 
 @NgModule({
@@ -29,14 +30,16 @@ import { SearchRoomComponent } from './user-interface/search-room/search-room.co
     WwHackathonTeam1AppRoutingModule,
   ],
   declarations: [
-    MainComponent, 
-    NavbarComponent, 
-    ErrorComponent, 
-    PageRibbonComponent, 
-    ActiveMenuDirective, 
-    FooterComponent, 
-    BookRoomComponent, 
+
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+    BookRoomComponent,
     SearchRoomComponent,
+    MyBookingsComponent
   ],
   bootstrap: [MainComponent],
 })
