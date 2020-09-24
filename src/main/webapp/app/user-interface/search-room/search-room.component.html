@@ -10,29 +10,42 @@
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepicker]="picker">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker #picker [(ngModel)]="date"></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field appearance="legacy">
-                <mat-label>Sitzplatz</mat-label>
-                <input matInput required>
+                <mat-label>Haus</mat-label>    
+                <mat-select  [(ngModel)]="selectedHaus" name="haeuser">
+                    <mat-option *ngFor="let haeuser of raumauswahl.haeuser" [value]="haeuser">
+                      {{haeuser}}
+                    </mat-option>
+                  </mat-select>
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
-                <mat-label>Sitzplatz</mat-label>
-                <input matInput required>
+                <mat-label>Stockwerk</mat-label>    
+                <mat-select  [(ngModel)]="selectedStockwerk" name="stockwerk">
+                    <mat-option *ngFor="let stockwerkValue of raumauswahl.stockwerk" [value]="stockwerkValue">
+                      {{stockwerkValue}}
+                    </mat-option>
+                  </mat-select>
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
-                <mat-label>Sitzplatz</mat-label>
-                <input matInput required>
+                <mat-label>Riegel</mat-label>    
+                <mat-select  [(ngModel)]="selectedRiegel" name="riegel">
+                    <mat-option *ngFor="let riegelValue of raumauswahl.riegel" [value]="riegelValue">
+                      {{riegelValue}}
+                    </mat-option>
+                  </mat-select>
               </mat-form-field>
+
             </form>
             
         </div>
         <div class="submit-btn-container">
             <button mat-raised-button>Abbrechen</button>
-            <button mat-raised-button color="primary">Sitzplatzt suchen</button>
+            <button mat-raised-button color="primary" (click)="routeToBuchen()">Sitzplatzt suchen</button>
         </div>
     </div>
 </div>

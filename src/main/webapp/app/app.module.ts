@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import './vendor';
 import { WwHackathonTeam1SharedModule } from 'app/shared/shared.module';
@@ -18,10 +19,10 @@ import { BookRoomComponent } from './user-interface/book-room/book-room.componen
 import { SearchRoomComponent } from './user-interface/search-room/search-room.component';
 import { MyBookingsComponent } from './user-interface/my-bookings/my-bookings.component';
 
-
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     WwHackathonTeam1SharedModule,
     WwHackathonTeam1CoreModule,
     WwHackathonTeam1HomeModule,
@@ -30,7 +31,6 @@ import { MyBookingsComponent } from './user-interface/my-bookings/my-bookings.co
     WwHackathonTeam1AppRoutingModule,
   ],
   declarations: [
-
     MainComponent,
     NavbarComponent,
     ErrorComponent,
@@ -39,7 +39,7 @@ import { MyBookingsComponent } from './user-interface/my-bookings/my-bookings.co
     FooterComponent,
     BookRoomComponent,
     SearchRoomComponent,
-    MyBookingsComponent
+    MyBookingsComponent,
   ],
   bootstrap: [MainComponent],
 })

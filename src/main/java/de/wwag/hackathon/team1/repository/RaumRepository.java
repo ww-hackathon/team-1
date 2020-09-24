@@ -6,6 +6,8 @@ import de.wwag.hackathon.team1.domain.User;
 import java.util.List;
 import java.util.Optional;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface RaumRepository extends JpaRepository<Raum, Long> {
+
+  Raum findByHausAndStockwerkAndRiegel(String haus, String stockwerk, String riegel);
 	
 	@Query(value = "SELECT DISTINCT HAUS FROM RAUM", nativeQuery = true)
 	List<String> findDistinctHaus();
@@ -24,4 +28,5 @@ public interface RaumRepository extends JpaRepository<Raum, Long> {
 	
 	@Query(value = "SELECT DISTINCT Riegel FROM RAUM", nativeQuery = true)
 	List<String> findDistinctRiegel();
+
 }

@@ -39,6 +39,10 @@ const LAYOUT_ROUTES = [navbarRoute, bookingRoute, ...errorRoute];
         },
         {
           path: 'my-bookings',
+          data: {
+            authorities: [Authority.USER],
+          },
+          canActivate: [UserRouteAccessService],
           component: MyBookingsComponent,
         },
         ...LAYOUT_ROUTES,

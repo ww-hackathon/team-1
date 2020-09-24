@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -38,7 +40,7 @@ public class BuchungResource {
     }
 
     /**
-     * {@code POST  /buchung} : Create a new buchung.
+     * {@code POST  /buchungen} : Create a new buchung.
      *
      * @param buchung the buchung to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new buchung, or with status {@code 400 (Bad Request)} if the buchung has already an ID.
@@ -100,6 +102,29 @@ public class BuchungResource {
         Optional<Buchung> buchung = buchungService.findOne(id);
         return ResponseUtil.wrapOrNotFound(buchung);
     }
+    
+    /**
+     * {@code GET  /buchungen/:date/raum/:id} : get the "id" buchung.
+     *
+     * @param id the id of the buchung to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the buchung, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/buchungen/{datum}/raum/{id}")
+    public ResponseEntity<List<Buchung>> getBuchung(@PathVariable String datum, @PathVariable String id) {
+        log.debug("REST request to get Buchung for Datum: {}, Id: {}", datum, id);
+        
+        Long raum_id = Long.parseLong(id);
+        
+        int year = Integer.parseInt(datum.split("-")[0]);
+        int month = Integer.parseInt(datum.split("-")[1]);
+        int day = Integer.parseInt(datum.split("-")[2]);
+        
+        LocalDate localDate = LocalDate.of(year, month, day);
+        
+        List<Buchung> raumBuchungen = buchungService.findMultipleByDatumAndRaumId(localDate, raum_id);
+        return ResponseEntity.ok().body(raumBuchungen);
+    }
+
 
     /**
      * {@code DELETE  /buchungen/:id} : delete the "id" buchung.

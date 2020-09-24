@@ -20,6 +20,7 @@
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200923124745_added_entity_constraints_Buchung.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <include file="config/liquibase/changelog/202009241620_altered_Buchung_for_user.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
     <include file="config/liquibase/changelog/202009231756_initial_data_Raum.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/202009231756_initial_data_Gruppe.xml" relativeToChangelogFile="false"/>
