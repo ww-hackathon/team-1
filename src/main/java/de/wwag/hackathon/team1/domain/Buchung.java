@@ -29,8 +29,9 @@ public class Buchung implements Serializable {
     @Column(name = "user")
     private String user;
 
-    @Column(name = "gruppe")
-    private String gruppe;
+    @ManyToOne
+    @JsonIgnoreProperties(value = "buchungs", allowSetters = true)
+    private Gruppe gruppe;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "buchungs", allowSetters = true)
@@ -71,16 +72,16 @@ public class Buchung implements Serializable {
         this.user = user;
     }
 
-    public String getGruppe() {
+    public Gruppe getGruppe() {
         return gruppe;
     }
 
-    public Buchung gruppe(String gruppe) {
+    public Buchung gruppe(Gruppe gruppe) {
         this.gruppe = gruppe;
         return this;
     }
 
-    public void setGruppe(String gruppe) {
+    public void setGruppe(Gruppe gruppe) {
         this.gruppe = gruppe;
     }
 
@@ -121,7 +122,6 @@ public class Buchung implements Serializable {
             "id=" + getId() +
             ", datum='" + getDatum() + "'" +
             ", user='" + getUser() + "'" +
-            ", gruppe='" + getGruppe() + "'" +
             "}";
     }
 }

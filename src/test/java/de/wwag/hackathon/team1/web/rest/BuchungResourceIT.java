@@ -38,9 +38,6 @@ public class BuchungResourceIT {
     private static final String DEFAULT_USER = "AAAAAAAAAA";
     private static final String UPDATED_USER = "BBBBBBBBBB";
 
-    private static final String DEFAULT_GRUPPE = "AAAAAAAAAA";
-    private static final String UPDATED_GRUPPE = "BBBBBBBBBB";
-
     @Autowired
     private BuchungRepository buchungRepository;
 
@@ -64,8 +61,7 @@ public class BuchungResourceIT {
     public static Buchung createEntity(EntityManager em) {
         Buchung buchung = new Buchung()
             .datum(DEFAULT_DATUM)
-            .user(DEFAULT_USER)
-            .gruppe(DEFAULT_GRUPPE);
+            .user(DEFAULT_USER);
         return buchung;
     }
     /**
@@ -77,8 +73,7 @@ public class BuchungResourceIT {
     public static Buchung createUpdatedEntity(EntityManager em) {
         Buchung buchung = new Buchung()
             .datum(UPDATED_DATUM)
-            .user(UPDATED_USER)
-            .gruppe(UPDATED_GRUPPE);
+            .user(UPDATED_USER);
         return buchung;
     }
 
@@ -92,7 +87,7 @@ public class BuchungResourceIT {
     public void createBuchung() throws Exception {
         int databaseSizeBeforeCreate = buchungRepository.findAll().size();
         // Create the Buchung
-        restBuchungMockMvc.perform(post("/api/buchungs")
+        restBuchungMockMvc.perform(post("/api/buchungen")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(buchung)))
             .andExpect(status().isCreated());
@@ -103,7 +98,6 @@ public class BuchungResourceIT {
         Buchung testBuchung = buchungList.get(buchungList.size() - 1);
         assertThat(testBuchung.getDatum()).isEqualTo(DEFAULT_DATUM);
         assertThat(testBuchung.getUser()).isEqualTo(DEFAULT_USER);
-        assertThat(testBuchung.getGruppe()).isEqualTo(DEFAULT_GRUPPE);
     }
 
     @Test
@@ -115,7 +109,7 @@ public class BuchungResourceIT {
         buchung.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restBuchungMockMvc.perform(post("/api/buchungs")
+        restBuchungMockMvc.perform(post("/api/buchungen")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(buchung)))
             .andExpect(status().isBadRequest());
@@ -133,15 +127,14 @@ public class BuchungResourceIT {
         buchungRepository.saveAndFlush(buchung);
 
         // Get all the buchungList
-        restBuchungMockMvc.perform(get("/api/buchungs?sort=id,desc"))
+        restBuchungMockMvc.perform(get("/api/buchungen?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(buchung.getId().intValue())))
             .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())))
-            .andExpect(jsonPath("$.[*].user").value(hasItem(DEFAULT_USER)))
-            .andExpect(jsonPath("$.[*].gruppe").value(hasItem(DEFAULT_GRUPPE)));
+            .andExpect(jsonPath("$.[*].user").value(hasItem(DEFAULT_USER)));
     }
-    
+
     @Test
     @Transactional
     public void getBuchung() throws Exception {
@@ -149,19 +142,18 @@ public class BuchungResourceIT {
         buchungRepository.saveAndFlush(buchung);
 
         // Get the buchung
-        restBuchungMockMvc.perform(get("/api/buchungs/{id}", buchung.getId()))
+        restBuchungMockMvc.perform(get("/api/buchungen/{id}", buchung.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(buchung.getId().intValue()))
             .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()))
-            .andExpect(jsonPath("$.user").value(DEFAULT_USER))
-            .andExpect(jsonPath("$.gruppe").value(DEFAULT_GRUPPE));
+            .andExpect(jsonPath("$.user").value(DEFAULT_USER));
     }
     @Test
     @Transactional
     public void getNonExistingBuchung() throws Exception {
         // Get the buchung
-        restBuchungMockMvc.perform(get("/api/buchungs/{id}", Long.MAX_VALUE))
+        restBuchungMockMvc.perform(get("/api/buchungen/{id}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
 
@@ -179,10 +171,9 @@ public class BuchungResourceIT {
         em.detach(updatedBuchung);
         updatedBuchung
             .datum(UPDATED_DATUM)
-            .user(UPDATED_USER)
-            .gruppe(UPDATED_GRUPPE);
+            .user(UPDATED_USER);
 
-        restBuchungMockMvc.perform(put("/api/buchungs")
+        restBuchungMockMvc.perform(put("/api/buchungen")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedBuchung)))
             .andExpect(status().isOk());
@@ -193,7 +184,6 @@ public class BuchungResourceIT {
         Buchung testBuchung = buchungList.get(buchungList.size() - 1);
         assertThat(testBuchung.getDatum()).isEqualTo(UPDATED_DATUM);
         assertThat(testBuchung.getUser()).isEqualTo(UPDATED_USER);
-        assertThat(testBuchung.getGruppe()).isEqualTo(UPDATED_GRUPPE);
     }
 
     @Test
@@ -202,7 +192,7 @@ public class BuchungResourceIT {
         int databaseSizeBeforeUpdate = buchungRepository.findAll().size();
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
-        restBuchungMockMvc.perform(put("/api/buchungs")
+        restBuchungMockMvc.perform(put("/api/buchungen")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(buchung)))
             .andExpect(status().isBadRequest());
@@ -221,7 +211,7 @@ public class BuchungResourceIT {
         int databaseSizeBeforeDelete = buchungRepository.findAll().size();
 
         // Delete the buchung
-        restBuchungMockMvc.perform(delete("/api/buchungs/{id}", buchung.getId())
+        restBuchungMockMvc.perform(delete("/api/buchungen/{id}", buchung.getId())
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
