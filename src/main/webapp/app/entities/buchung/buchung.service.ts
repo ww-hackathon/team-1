@@ -39,8 +39,8 @@ export class BuchungService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  findByUserd(userId: number): Observable<EntityResponseType> {
-    return this.http.get<IBuchung>(`${this.resourceUrl}/user/${userId}`, { observe: 'response' });
+  findByUserd(userId: number): Observable<EntityArrayResponseType> {
+    return this.http.get<IBuchung[]>(`${this.resourceUrl}/user/${userId}`, { observe: 'response' });
   }
 
   findByRoomAndDate(roomId: number, date: Moment): Observable<EntityResponseType> {

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Buchung } from 'app/shared/model/buchung.model';
+import { IBuchung } from 'app/shared/model/buchung.model';
 import { AccountService } from 'app/core/auth/account.service';
-import { Account } from 'app/core/user/account.model';
-import { Observable } from 'rxjs';
+import { UserService } from 'app/core/user/user.service';
+import { BuchungService } from 'app/entities/buchung/buchung.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-my-bookings',
@@ -10,48 +11,19 @@ import { Observable } from 'rxjs';
   styleUrls: ['./my-bookings.component.scss'],
 })
 export class MyBookingsComponent implements OnInit {
-  buchungen: Buchung[] = [
-    {
-      id: 1,
-      user: {
-        firstName: 'Test',
-        id: 'testid',
-      },
-      gruppe: {
-        id: 1,
-        anzahlPlaetze: 2,
-        name: 'Gruppe 1',
-      },
-      raum: {
-        haus: '1',
-        id: 2,
-        riegel: 'A',
-        stockwerk: '2.OG',
-      },
-    },
-    {
-      id: 2,
-      user: {
-        firstName: 'Test2',
-        id: 'testid2',
-      },
-      gruppe: {
-        id: 3,
-        anzahlPlaetze: 3,
-        name: 'Gruppe 5',
-      },
-      raum: {
-        haus: '2',
-        id: 4,
-        riegel: 'B',
-        stockwerk: '2.OG',
-      },
-    },
-  ];
+  buchungen: IBuchung[] = [];
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private userService: UserService, private buchungService: BuchungService) {}
 
   ngOnInit(): void {
-    const account: Observable<Account | null> = this.accountService.identity();
+    this.accountService.getAuthenticationState().subscribe(account => {
+      if (account) {
+        this.userService
+          .find(account.login)
+          .subscribe(user =>
+            this.buchungService.findByUserd(user.id).subscribe((res: HttpResponse<IBuchung[]>) => (this.buchungen = res.body || []))
+          );
+      }
+    });
   }
 }
