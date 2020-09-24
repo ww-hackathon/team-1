@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IGruppe } from '../../shared/model/gruppe.model';
+import { GruppenService } from './gruppe.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-gruppe',
@@ -10,20 +12,14 @@ export class GruppeComponent implements OnInit {
   gruppen?: IGruppe[];
   eventSubscriber?: Subscription;
 
-  constructor() {}
+  constructor(private gruppenSerive: GruppenService) {}
 
   loadAll(): void {
-    // Aufruf alle Gruppen zu laden
+    this.gruppenSerive.query().subscribe((res: HttpResponse<IGruppe[]>) => (this.gruppen = res.body || []));
   }
 
   ngOnInit(): void {
     this.loadAll();
-    const gruppe = {
-      id: 1,
-      name: 'Gruppe1',
-      spaces: 2,
-    };
-    this.gruppen = [gruppe];
   }
 
   trackId(index: number, item: IGruppe): number {
