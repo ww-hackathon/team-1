@@ -1,0 +1,61 @@
+<div>
+    <h2 id="page-heading">
+        <span>Gruppen</span>
+
+        <!-- <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-raum" [routerLink]="['/raum/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="wwHackathonTeam1App.raum.home.createLabel">
+            Create a new Raum
+            </span>
+        </button> -->
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="gruppen?.length === 0">
+        <span>No gruppen found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="gruppen && gruppen.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span >ID</span></th>
+                    <th scope="col" ><span >Name</span></th>
+                    <th scope="col" ><span >Plätze</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let gruppe of gruppen ;trackBy: trackId">
+                    <td>{{ gruppe.id }}</td>
+                    <td>{{ gruppe.name }}</td>
+                    <td>{{ gruppe.spaces }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit" disabled
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit" disabled
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" disabled
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
