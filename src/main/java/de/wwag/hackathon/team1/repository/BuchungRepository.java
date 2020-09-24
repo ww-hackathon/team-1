@@ -2,6 +2,9 @@ package de.wwag.hackathon.team1.repository;
 
 import de.wwag.hackathon.team1.domain.Buchung;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +14,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface BuchungRepository extends JpaRepository<Buchung, Long> {
+
+	List<Buchung> findByDateAndRaumId(LocalDate datum, Long id);
 }

@@ -2,6 +2,7 @@ package de.wwag.hackathon.team1.service;
 
 import de.wwag.hackathon.team1.domain.Buchung;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +20,18 @@ public interface BuchungService {
     Buchung save(Buchung buchung);
 
     /**
-     * Get all the buchungs.
+     * Get all the buchungen.
      *
      * @return the list of entities.
      */
     List<Buchung> findAll();
+    
+    /**
+     * Get all the buchungen in a Raum.
+     *
+     * @return the list of entities.
+     */
+    List<Buchung> findMultipleByDateAndRaumId(LocalDate datum, Long id);
 
 
     /**
