@@ -24,7 +24,7 @@ public class Gruppe implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "anzahlPlaetze")
+    @Column(name = "anzahl_plaetze")
     private int anzahlPlaetze;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -62,7 +62,7 @@ public class Gruppe implements Serializable {
         this.anzahlPlaetze = anzahlPlaetze;
     }
 
- 
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
