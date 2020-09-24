@@ -14,7 +14,7 @@ type EntityArrayResponseType = HttpResponse<IBuchung[]>;
 
 @Injectable({ providedIn: 'root' })
 export class BuchungService {
-  public resourceUrl = SERVER_API_URL + 'api/buchungs';
+  public resourceUrl = SERVER_API_URL + 'api/buchungen';
 
   constructor(protected http: HttpClient) {}
 

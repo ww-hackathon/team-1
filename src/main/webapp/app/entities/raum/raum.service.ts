@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IRaum[]>;
 
 @Injectable({ providedIn: 'root' })
 export class RaumService {
-  public resourceUrl = SERVER_API_URL + 'api/raums';
+  public resourceUrl = SERVER_API_URL + 'api/raum';
 
   constructor(protected http: HttpClient) {}
 
