@@ -17,6 +17,10 @@ export class BookRoomComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {}
+
+  check(): void {
+    
+  }
   /*ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startsWith(''),
