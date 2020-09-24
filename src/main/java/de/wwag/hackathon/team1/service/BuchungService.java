@@ -48,4 +48,6 @@ public interface BuchungService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+	List<Buchung> findBuchungByUserId(Long userId);
 }

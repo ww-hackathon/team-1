@@ -1,7 +1,10 @@
 package de.wwag.hackathon.team1.web.rest;
 
+import de.wwag.hackathon.team1.domain.Buchung;
 import de.wwag.hackathon.team1.domain.Gruppe;
+import de.wwag.hackathon.team1.service.BuchungService;
 import de.wwag.hackathon.team1.service.GruppeService;
+import de.wwag.hackathon.team1.service.dto.GruppeDTO;
 import de.wwag.hackathon.team1.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +31,8 @@ public class GruppeResource {
 
     private final Logger log = LoggerFactory.getLogger(GruppeResource.class);
 
+    private final int DEFAULT_ANZAHLGRUPPEN = 10;
+
     private static final String ENTITY_NAME = "gruppe";
 
     @Value("${jhipster.clientApp.name}")
@@ -33,8 +40,11 @@ public class GruppeResource {
 
     private final GruppeService gruppeService;
 
-    public GruppeResource(GruppeService gruppeService) {
+    private final BuchungService buchungService;
+
+    public GruppeResource(GruppeService gruppeService, BuchungService buchungService) {
         this.gruppeService = gruppeService;
+        this.buchungService = buchungService;
     }
 
     /**
@@ -101,6 +111,29 @@ public class GruppeResource {
         return ResponseUtil.wrapOrNotFound(gruppe);
     }
 
+    /**
+     * {@code GET  /gruppe/:datum/raum/:id} : get the "id" and "datum" gruppe.
+     *
+     * @param datum the datum of the gruppe to retrieve.
+     * @param id the id of the gruppe to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the gruppe, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/gruppe/{datum}/raum/{id}")
+    public ResponseEntity<GruppeDTO> getAllVacantGroupsForDateAndRoom(@PathVariable String datum, @PathVariable String id) {
+        log.debug("REST request to get Gruppen by Datum: {}, Raum Id: {}", datum, id);
+
+        int year = Integer.parseInt(datum.split("-")[0]);
+        int month = Integer.parseInt(datum.split("-")[1]);
+        int day = Integer.parseInt(datum.split("-")[2]);
+
+        Long raumId = Long.parseLong(id);
+        LocalDate localDate = LocalDate.of(year, month, day);
+
+        Optional<GruppeDTO> gruppeDTO = gruppeService.findMultipleByDatumAndRaumId(localDate, raumId);
+
+        return ResponseUtil.wrapOrNotFound(gruppeDTO);
+
+    }
     /**
      * {@code DELETE  /gruppe/:id} : delete the "id" gruppe.
      *
