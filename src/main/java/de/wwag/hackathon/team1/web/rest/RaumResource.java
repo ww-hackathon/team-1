@@ -48,7 +48,7 @@ public class RaumResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new raum, or with status {@code 400 (Bad Request)} if the raum has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/raums")
+    @PostMapping("/raum")
     public ResponseEntity<Raum> createRaum(@RequestBody Raum raum) throws URISyntaxException {
         log.debug("REST request to save Raum : {}", raum);
         if (raum.getId() != null) {
@@ -69,7 +69,7 @@ public class RaumResource {
      * or with status {@code 500 (Internal Server Error)} if the raum couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/raums")
+    @PutMapping("/raum")
     public ResponseEntity<Raum> updateRaum(@RequestBody Raum raum) throws URISyntaxException {
         log.debug("REST request to update Raum : {}", raum);
         if (raum.getId() == null) {
@@ -86,7 +86,7 @@ public class RaumResource {
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of raums in body.
      */
-    @GetMapping("/raums")
+    @GetMapping("/raum")
     public List<Raum> getAllRaums() {
         log.debug("REST request to get all Raums");
         return raumService.findAll();
@@ -98,7 +98,7 @@ public class RaumResource {
      * @param id the id of the raum to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the raum, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/raums/{id}")
+    @GetMapping("/raum/{id}")
     public ResponseEntity<Raum> getRaum(@PathVariable Long id) {
         log.debug("REST request to get Raum : {}", id);
         Optional<Raum> raum = raumService.findOne(id);
@@ -127,7 +127,7 @@ public class RaumResource {
      * @param id the id of the raum to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/raums/{id}")
+    @DeleteMapping("/raum/{id}")
     public ResponseEntity<Void> deleteRaum(@PathVariable Long id) {
         log.debug("REST request to delete Raum : {}", id);
         raumService.delete(id);
