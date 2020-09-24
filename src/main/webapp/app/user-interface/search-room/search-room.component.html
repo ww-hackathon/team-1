@@ -14,19 +14,32 @@
             </mat-form-field>
 
             <mat-form-field appearance="legacy">
-                <mat-label>Sitzplatz</mat-label>
-                <input matInput required>
+                <mat-label>Haus</mat-label>    
+                <mat-select  [(ngModel)]="selectedHaus" name="haeuser">
+                    <mat-option *ngFor="let haeuser of raumauswahl.haeuser" [value]="haeuser">
+                      {{haeuser}}
+                    </mat-option>
+                  </mat-select>
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
-                <mat-label>Sitzplatz</mat-label>
-                <input matInput required>
+                <mat-label>Stockwerk</mat-label>    
+                <mat-select  [(ngModel)]="selectedStockwerk" name="stockwerk">
+                    <mat-option *ngFor="let stockwerkValue of raumauswahl.stockwerk" [value]="stockwerkValue">
+                      {{stockwerkValue}}
+                    </mat-option>
+                  </mat-select>
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
-                <mat-label>Sitzplatz</mat-label>
-                <input matInput required>
+                <mat-label>Riegel</mat-label>    
+                <mat-select  [(ngModel)]="selectedRiegel" name="riegel">
+                    <mat-option *ngFor="let riegelValue of raumauswahl.riegel" [value]="riegelValue">
+                      {{riegelValue}}
+                    </mat-option>
+                  </mat-select>
               </mat-form-field>
+
             </form>
             
         </div>

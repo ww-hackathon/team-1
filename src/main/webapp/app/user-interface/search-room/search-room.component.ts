@@ -1,23 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators'
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { RaumService } from 'app/entities/raum/raum.service';
+import { Raumauswahl, IRaumauswahl } from 'app/shared/model/raumauswahl.model';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-search-room',
   templateUrl: './search-room.component.html',
-  styleUrls: ['./search-room.component.scss']
+  styleUrls: ['./search-room.component.scss'],
 })
 export class SearchRoomComponent implements OnInit {
+  raumauswahl: Raumauswahl = {};
+  selectedHaus = '';
+  selectedStockwerk = '';
+  selectedRiegel = '';
 
-  ngOnInit(): void {}
+  constructor(private raumService: RaumService) {}
+  ngOnInit(): void {
+    this.loadData();
+  }
 
-  /* myControl = new FormControl();
+  loadData(): void {
+    this.raumService.raumauswahl().subscribe((res: HttpResponse<IRaumauswahl>) => (this.raumauswahl = res.body || {}));
+  }
+
+  /*
+  myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions!: Observable<string[]>;
-
-  constructor() { }
-
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -30,5 +42,4 @@ export class SearchRoomComponent implements OnInit {
 
     return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   } */
-
 }
