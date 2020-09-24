@@ -100,21 +100,21 @@ public class RaumResource {
         Optional<Raum> raum = raumService.findOne(id);
         return ResponseUtil.wrapOrNotFound(raum);
     }
-    
+
     /**
-     * {@code GET  /raums/:haus:stockwer:riegel} : get the "haus, stockwerk, riegel" raum.
+     * {@code GET  /raum/:haus:stockwerk:riegel} : get the "haus, stockwerk, riegel" raum.
      *
-     * @param haus the id of the raum to retrieve.
+     * @param haus      the id of the raum to retrieve.
      * @param stockwerk the id of the raum to retrieve.
-     * @param riegel the id of the raum to retrieve.
+     * @param riegel    the id of the raum to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the raum, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/raums/{haus}/{stockwerk}/{riegel}")
+    @GetMapping("/raum/{haus}/{stockwerk}/{riegel}")
     @ResponseBody
-    public ResponseEntity<Long> getRaumId(@PathVariable String haus,@PathVariable String stockwerk,@PathVariable String riegel) {
-    	log.debug("REST request to get Raum : {}", haus + stockwerk + riegel);
-    	Long raum_id = raumService.findOneByHausStockwerkRiegel(haus, stockwerk, riegel);
-    	return ResponseEntity.ok().body(raum_id);
+    public ResponseEntity<Long> getRaumIdByContent(@PathVariable String haus, @PathVariable String stockwerk, @PathVariable String riegel) {
+        log.debug("REST request to get Raum : Haus: {}, Stockwerk: {}, Riegel: {}", haus + stockwerk + riegel);
+        Long raum_id = raumService.findOneByHausStockwerkRiegel(haus, stockwerk, riegel);
+        return ResponseEntity.ok().body(raum_id);
     }
 
     /**

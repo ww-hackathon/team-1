@@ -33,12 +33,12 @@ public interface RaumService {
      * @return the entity.
      */
     Optional<Raum> findOne(Long id);
-    
+
     /**
      * Get the "haus, stockwerk and riegel" raum.
      *
      * @param haus the haus of the entity.
-     * @param stockwek the haus of the entity.
+     * @param stockwerk the haus of the entity.
      * @param riegel the haus of the entity.
      * @return the entity.
      */
