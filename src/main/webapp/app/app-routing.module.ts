@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
+import { bookingRoute } from './user-interface/book-room/book-room.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/shared/constants/authority.constants';
 
@@ -10,7 +11,7 @@ import { BookRoomComponent } from './user-interface/book-room/book-room.componen
 import { SearchRoomComponent } from './user-interface/search-room/search-room.component';
 import { MyBookingsComponent } from './user-interface/my-bookings/my-bookings.component';
 
-const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
+const LAYOUT_ROUTES = [navbarRoute, bookingRoute, ...errorRoute];
 
 @NgModule({
   imports: [
