@@ -5,13 +5,16 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IRaum } from 'app/shared/model/raum.model';
+import { IRaumauswahl } from 'app/shared/model/raumauswahl.model';
 
 type EntityResponseType = HttpResponse<IRaum>;
 type EntityArrayResponseType = HttpResponse<IRaum[]>;
+type EntityRaumauswahlResponseType = HttpResponse<IRaumauswahl>;
 
 @Injectable({ providedIn: 'root' })
 export class RaumService {
   public resourceUrl = SERVER_API_URL + 'api/raum';
+  public resourceUrlRaumauswahl = SERVER_API_URL + 'api/raumauswahl';
 
   constructor(protected http: HttpClient) {}
 
@@ -27,6 +30,10 @@ export class RaumService {
     return this.http.get<IRaum>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findbyProperties(haus: String, riegel: String, stockwerk: String): Observable<HttpResponse<number>> {
+    return this.http.get<number>(`${this.resourceUrl}/${haus}/${riegel}/${stockwerk}`, { observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IRaum[]>(this.resourceUrl, { params: options, observe: 'response' });
@@ -34,5 +41,9 @@ export class RaumService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  raumauswahl(): Observable<EntityRaumauswahlResponseType> {
+    return this.http.get<IRaumauswahl>(`${this.resourceUrlRaumauswahl}`, { observe: 'response' });
   }
 }
