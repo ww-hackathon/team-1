@@ -20,7 +20,7 @@
           <mat-form-field appearance="legacy">
             <mat-label>Gruppe</mat-label>    
             <mat-select  [(ngModel)]="selectedGruppe" name="riegel">
-                <mat-option *ngFor="let gruppe of gruppen" [value]="gruppe">
+                <mat-option *ngFor="let gruppe of gruppen.gruppenList" [value]="gruppe">
                   {{gruppe.name}}
                 </mat-option>
               </mat-select>

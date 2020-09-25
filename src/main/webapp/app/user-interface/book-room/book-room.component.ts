@@ -8,7 +8,7 @@ import { HttpResponse } from '@angular/common/http';
 import { GruppenService } from 'app/entities/gruppe/gruppe.service';
 import { BuchungService } from 'app/entities/buchung/buchung.service';
 import { Buchung, IBuchung } from 'app/shared/model/buchung.model';
-import { IGruppe, Gruppe } from 'app/shared/model/gruppe.model';
+import { IGruppe, Gruppe, GruppeDTO } from 'app/shared/model/gruppe.model';
 import { IUser } from 'app/core/user/user.model';
 import { AccountService } from 'app/core/auth/account.service';
 import { UserService } from 'app/core/user/user.service';
@@ -28,7 +28,7 @@ export class BookRoomComponent implements OnInit {
   routeState: any;
   roomId = 0;
   buchungen: IBuchung[] = [];
-  gruppen: IGruppe[] = [];
+  gruppen: GruppeDTO = {};
   user: IUser = {};
   selectedGruppe: Gruppe = { id: 0 };
 
@@ -60,7 +60,7 @@ export class BookRoomComponent implements OnInit {
         .subscribe((responseBuchung: HttpResponse<IBuchung[]>) => (this.buchungen = responseBuchung.body || []));
       this.gruppenService
         .findByRoomAndDate(this.roomId, moment(this.data.date))
-        .subscribe((responseGruppe: HttpResponse<IGruppe[]>) => (this.gruppen = responseGruppe.body || []));
+        .subscribe((responseGruppe: HttpResponse<GruppeDTO>) => (this.gruppen = responseGruppe.body || {}));
     });
 
     if (this.user) {
