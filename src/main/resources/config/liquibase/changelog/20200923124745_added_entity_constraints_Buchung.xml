@@ -20,7 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="gruppe"/>
 
-
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="buchung"
+                                 constraintName="fk_buchung_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
 
     </changeSet>
 </databaseChangeLog>
