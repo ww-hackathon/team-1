@@ -1,0 +1,41 @@
+.component-container {
+    background-color: #f8f8f8;
+    height: 100vh;
+}
+
+.book-room-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.title > h2{
+    border-bottom: 2px solid #D3D3D3;
+}
+
+.main-area {
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    padding: 3em;
+    row-gap: 1em;
+}
+
+.inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    width: 100%;
+}
+
+
+.pic-container {
+    justify-self: end;
+}
+
+.submit-btn-container {
+    grid-column-start: 2;
+    justify-self: end;
+}

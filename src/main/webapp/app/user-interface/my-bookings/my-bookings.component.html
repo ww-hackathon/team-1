@@ -1,0 +1,26 @@
+<div class="table-responsive" id="buchungen" *ngIf="buchungen && buchungen.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+            <tr>
+                <th scope="col" ><span >Datum</span></th>
+                <th scope="col" ><span >Ort</span></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let buchung of buchungen">
+                <td>Datum abc</td>
+                <td>Haus {{ buchung.raum?.haus }}, {{ buchung.raum?.stockwerk }}, Riegel {{ buchung.raum?.riegel }}, {{ buchung.gruppe?.name }}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit" (click)="delete(buchung)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon icon="times"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
