@@ -31,7 +31,7 @@ export class RaumService {
   }
 
   findbyProperties(haus: String, riegel: String, stockwerk: String): Observable<HttpResponse<number>> {
-    return this.http.get<number>(`${this.resourceUrl}/${haus}/${riegel}/${stockwerk}`, { observe: 'response' });
+    return this.http.get<number>(`${this.resourceUrl}/${haus}/${stockwerk}/${riegel}`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

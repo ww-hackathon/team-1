@@ -13,6 +13,8 @@ import { IUser } from 'app/core/user/user.model';
 import { AccountService } from 'app/core/auth/account.service';
 import { UserService } from 'app/core/user/user.service';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'jhi-book-room',
   templateUrl: './book-room.component.html',
@@ -50,15 +52,17 @@ export class BookRoomComponent implements OnInit {
     this.getUser();
   }
   ngOnInit(): void {
-    this.raumService
-      .findbyProperties(this.data.haus, this.data.riegel, this.data.stockwerk)
-      .subscribe((res: HttpResponse<number>) => (this.roomId = res.body || 0));
-    this.buchungService
-      .findByRoomAndDate(this.roomId, this.data.date)
-      .subscribe((res: HttpResponse<IBuchung[]>) => (this.buchungen = res.body || []));
-    this.gruppenService
-      .findByRoomAndDate(this.roomId, this.data.date)
-      .subscribe((res: HttpResponse<IGruppe[]>) => (this.gruppen = res.body || []));
+    this.raumService.findbyProperties(this.data.haus, this.data.riegel, this.data.stock).subscribe((res: HttpResponse<number>) => {
+      this.roomId = res.body || 0;
+
+      this.buchungService
+        .findByRoomAndDate(this.roomId, moment(this.data.date))
+        .subscribe((responseBuchung: HttpResponse<IBuchung[]>) => (this.buchungen = responseBuchung.body || []));
+      this.gruppenService
+        .findByRoomAndDate(this.roomId, moment(this.data.date))
+        .subscribe((responseGruppe: HttpResponse<IGruppe[]>) => (this.gruppen = responseGruppe.body || []));
+    });
+
     if (this.user) {
       this.getUser();
     }
