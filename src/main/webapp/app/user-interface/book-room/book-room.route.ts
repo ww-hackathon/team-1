@@ -5,8 +5,5 @@ import { BookRoomComponent } from './book-room.component';
 export const bookingRoute: Route = {
   path: 'booking',
   component: BookRoomComponent,
-  data: {
-    authorities: [],
-    pageTitle: 'home.title',
-  },
+  outlet: 'booking'
 };
