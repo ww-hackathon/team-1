@@ -6,14 +6,13 @@ import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { IGruppe } from '../../shared/model/gruppe.model';
 import { SERVER_API_URL } from '../../app.constants';
 import { createRequestOption } from '../../shared/util/request-util';
-import { Moment } from 'moment';
 
 type EntityResponseType = HttpResponse<IGruppe>;
 type EntityArrayResponseType = HttpResponse<IGruppe[]>;
 
 @Injectable({ providedIn: 'root' })
 export class GruppenService {
-  public resourceUrl = SERVER_API_URL + 'api/gruppen';
+  public resourceUrl = SERVER_API_URL + 'api/gruppe';
 
   constructor(protected http: HttpClient) {}
 
@@ -27,7 +26,7 @@ export class GruppenService {
     return this.http.get<IGruppe[]>(`${this.resourceUrl}/${formattedDate}/raum/${roomId}`, { observe: 'response' });
   }
 
-  private formatDate(moment?: Moment): string {
+  private formatDate(moment?: moment.Moment): string {
     return moment && moment.isValid() ? moment.format(DATE_FORMAT) : '';
   }
 }

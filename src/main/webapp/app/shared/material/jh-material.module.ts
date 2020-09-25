@@ -13,6 +13,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -41,6 +42,7 @@ import { NgModule } from '@angular/core';
     MatButtonToggleModule,
     MatCardModule,
     MatDatepickerModule,
+    MatMomentDateModule,
     MatNativeDateModule,
     MatGridListModule,
     MatExpansionModule,
@@ -66,6 +68,7 @@ import { NgModule } from '@angular/core';
     MatButtonToggleModule,
     MatCardModule,
     MatDatepickerModule,
+    MatMomentDateModule,
     MatNativeDateModule,
     MatGridListModule,
     MatExpansionModule,
