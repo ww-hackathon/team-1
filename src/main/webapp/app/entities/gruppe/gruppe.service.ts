@@ -12,7 +12,7 @@ type EntityArrayResponseType = HttpResponse<IGruppe[]>;
 
 @Injectable({ providedIn: 'root' })
 export class GruppenService {
-  public resourceUrl = SERVER_API_URL + 'api/gruppen';
+  public resourceUrl = SERVER_API_URL + 'api/gruppe';
 
   constructor(protected http: HttpClient) {}
 
