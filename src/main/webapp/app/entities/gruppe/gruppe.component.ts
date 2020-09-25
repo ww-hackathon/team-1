@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IGruppe } from '../../shared/model/gruppe.model';
+import { IGruppe, GruppeDTO } from '../../shared/model/gruppe.model';
 import { GruppenService } from './gruppe.service';
 import { HttpResponse } from '@angular/common/http';
 
@@ -9,13 +9,13 @@ import { HttpResponse } from '@angular/common/http';
   templateUrl: './gruppe.component.html',
 })
 export class GruppeComponent implements OnInit {
-  gruppen?: IGruppe[];
+  gruppen?: GruppeDTO;
   eventSubscriber?: Subscription;
 
   constructor(private gruppenSerive: GruppenService) {}
 
   loadAll(): void {
-    this.gruppenSerive.query().subscribe((res: HttpResponse<IGruppe[]>) => (this.gruppen = res.body || []));
+    this.gruppenSerive.query().subscribe((res: HttpResponse<GruppeDTO>) => (this.gruppen = res.body || {}));
   }
 
   ngOnInit(): void {

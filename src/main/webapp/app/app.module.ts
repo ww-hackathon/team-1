@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import './vendor';
 import { WwHackathonTeam1SharedModule } from 'app/shared/shared.module';
@@ -14,10 +15,14 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
+import { BookRoomComponent } from './user-interface/book-room/book-room.component';
+import { SearchRoomComponent } from './user-interface/search-room/search-room.component';
+import { MyBookingsComponent } from './user-interface/my-bookings/my-bookings.component';
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     WwHackathonTeam1SharedModule,
     WwHackathonTeam1CoreModule,
     WwHackathonTeam1HomeModule,
@@ -25,7 +30,17 @@ import { ErrorComponent } from './layouts/error/error.component';
     WwHackathonTeam1EntityModule,
     WwHackathonTeam1AppRoutingModule,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+    BookRoomComponent,
+    SearchRoomComponent,
+    MyBookingsComponent,
+  ],
   bootstrap: [MainComponent],
 })
 export class WwHackathonTeam1AppModule {}

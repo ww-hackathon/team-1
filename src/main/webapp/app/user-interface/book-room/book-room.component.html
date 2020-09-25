@@ -1,0 +1,41 @@
+<div class="component-container">
+  
+    <div class="book-room-container">
+      <div class="title">
+        <h2>Sitzplatz buchen</h2>
+      </div>
+
+      <div class="main-area">
+        <div class="inputs-container">
+          <mat-form-field appearance="legacy">
+            <mat-label>Name, Vorname</mat-label>
+            <input matInput disabled value="{{user.lastName}}, {{user.firstName}}">
+          </mat-form-field>
+  
+          <mat-form-field appearance="legacy">
+            <mat-label>Abteilung</mat-label>
+            <input matInput required>
+          </mat-form-field>
+
+          <mat-form-field appearance="legacy">
+            <mat-label>Gruppe</mat-label>    
+            <mat-select  [(ngModel)]="selectedGruppe" name="riegel">
+                <mat-option *ngFor="let gruppe of gruppen.gruppenList" [value]="gruppe">
+                  {{gruppe.name}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="pic-container">
+          <img src="../B-Riegel.jpg" >
+        </div>
+  
+        <div class="submit-btn-container">
+          <button mat-raised-button>Abbrechen</button>
+          <button mat-raised-button color="primary">Sitzplatzt buchen</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>

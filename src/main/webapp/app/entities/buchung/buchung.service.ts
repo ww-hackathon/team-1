@@ -8,7 +8,6 @@ import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IBuchung } from 'app/shared/model/buchung.model';
-import { Moment } from 'moment';
 
 type EntityResponseType = HttpResponse<IBuchung>;
 type EntityArrayResponseType = HttpResponse<IBuchung[]>;
@@ -39,15 +38,15 @@ export class BuchungService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  findByUserd(userId: number): Observable<EntityResponseType> {
-    return this.http.get<IBuchung>(`${this.resourceUrl}/user/${userId}`, { observe: 'response' });
+  findByUserd(userId: number): Observable<EntityArrayResponseType> {
+    return this.http.get<IBuchung[]>(`${this.resourceUrl}/user/${userId}`, { observe: 'response' });
   }
 
-  findByRoomAndDate(roomId: number, date: Moment): Observable<EntityResponseType> {
+  findByRoomAndDate(roomId: number, date: moment.Moment): Observable<EntityArrayResponseType> {
     const formattedDate = this.formatDate(date);
     return this.http
-      .get<IBuchung>(`${this.resourceUrl}/${formattedDate}/raum/${roomId}`, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+      .get<IBuchung[]>(`${this.resourceUrl}/${formattedDate}/raum/${roomId}`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
@@ -84,7 +83,7 @@ export class BuchungService {
     return res;
   }
 
-  private formatDate(date?: Moment): string {
+  private formatDate(date?: moment.Moment): string {
     return date && date.isValid() ? date.format(DATE_FORMAT) : '';
   }
 }
